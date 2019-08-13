@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, render_template
 import random
 import string
 
@@ -20,7 +20,7 @@ def lookup_link(url_code):
 
 @app.route('/add_link')
 def add_link():
-    pass  # TODO: Add a form to add links and short references to them into the database.
+    return render_template('add_link.html')
 
 
 @app.route('/<url_code>')

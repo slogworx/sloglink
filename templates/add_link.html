@@ -1,0 +1,39 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="slogworx link shortener - slog.link">
+    <meta name="author" content="slogworx.com">
+    <link rel="shortcut icon" href="/static/slogworx16.png">
+    <title>slogworx.com</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/sloglink.css">
+  </head>
+  <body>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <img class="logo" alt="slogworx logo" src="/static/slogworx_logo.png">
+            </div>
+        </div>
+        <h1>slogworx link shortener</h1>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <form>
+                <div class="form-group">
+                    <input type="link" class="form-control" id="original_link" placeholder="Enter link to shorten...">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <div class="shortened_link">
+                    {% block content %}
+                    {{shortened_link}}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
