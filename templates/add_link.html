@@ -1,9 +1,9 @@
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="slogworx link shortener - slog.link">
+    <meta name="description" content="slog.link - link shortener">
     <meta name="author" content="slogworx.com">
     <link rel="shortcut icon" href="/static/slogworx16.png">
-    <title>slogworx.com</title>
+    <title>slog.link</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/sloglink.css">
@@ -15,22 +15,27 @@
                 <img class="logo" alt="slogworx logo" src="/static/slogworx_logo.png">
             </div>
         </div>
-        <h1>slogworx link shortener</h1>
-        <div class="row text-center">
-            <div class="col-md-12">
-                <form>
+        <h1>slog.link</h1>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form action='https://slog.link/add_link', method="POST">
                 <div class="form-group">
-                    <input type="link" class="form-control" id="original_link" placeholder="Enter link to shorten...">
+                    <input type="text" class="form-control" name="new_link" method="POST" placeholder="Enter long link to shorten...">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row text-center">
             <div class="col-md-12">
+                <div class="link_header">Shortened Link</div>
                 <div class="shortened_link">
                     {% block content %}
-                    {{shortened_link}}
+                    <h2>{{ short_link }}</h2>
+                    <div class="to">TO</div>
+                    {{ long_link }}
                     {% endblock %}
                 </div>
             </div>

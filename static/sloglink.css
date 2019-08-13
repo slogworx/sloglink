@@ -13,11 +13,6 @@ img.logo {
     border-width: 5px;
     border-color: #ffffff;
 }
-.social {
-    color: #ffffff;
-    padding: 20px;
-    font-size: 46pt;
-}
 a:hover {
     color: #ffffff;
     text-decoration: none;
@@ -36,34 +31,33 @@ h1 {
     text-align: center;
 }
 h2 {
-    font-size: 14pt;
-    font-weight: bold;
-    text-align: center;
+    font-size: 16pt;
+    font-weight: bolder;
 }
-.visitor_info {
-    width: 25%;
-    font-size: 10pt;
-    border-style: solid;
-    border-color: white;
-    border-width: 2px;
-    padding: 10px;
-    margin: auto;
-}
-.box_header {
-    width:25%;
-    font-size: 10pt;
+.link_header {
+    width: 50%;
+    font-size: 16pt;
     background: #ffffff;
     color: #006600;
     font-weight: bolder;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-
 }
-.box_wrap {
+.shortened_link {
+    width: 50%;
+    font-size: 14pt;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    padding: 10px;
+    margin: auto;
     word-wrap: break-word;
 }
-.blurb {
-    width: 75%;
+.to {
+    background: #ffffff;
+    color: #006600;
+    font-weight: bold;
     margin: auto;
+    width: 38%;
 }
