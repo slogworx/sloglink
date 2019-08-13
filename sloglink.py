@@ -31,7 +31,7 @@ def add_link():
         short_link = f'https://slog.link/{linkstr}'
         return render_template('add_link.html', short_link=short_link, long_link=long_link)
     else:
-        return render_template('add_link.html', short_link='slog.link', long_link='enter a link above')
+        return render_template('add_link.html', short_link='slog.link', long_link='paste a long link above')
 
 
 @app.route('/<url_code>')
