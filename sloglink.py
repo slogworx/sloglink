@@ -1,4 +1,6 @@
 from flask import Flask, redirect, render_template, request
+from sqlalchemy.exc import IntegrityError
+import sloglinkdb
 import random
 import string
 
@@ -15,7 +17,11 @@ def get_linkstr(n):
 
 
 def archive_link(linkstr, long_link):
-    pass  # TODO: Save linkstr with long link
+    session = sloglinkdb.connect()
+    new_link = sloglinkdb.Sloglink(linkstr=linkstr, long_link=long_link)
+    session.add(new_link)
+
+    session.commit()
 
 
 def lookup_link(url_code):
@@ -27,8 +33,12 @@ def add_link():
     if request.method == 'POST':
         long_link = request.form.get("new_link")
         linkstr = get_linkstr(2)
-        archive_link(linkstr, long_link)
         short_link = f'https://slog.link/{linkstr}'
+        try:
+            archive_link(linkstr, long_link)
+        except IntegrityError:
+            short_link = 'short link exists for url: '
+
         return render_template('add_link.html', short_link=short_link, long_link=long_link)
     else:
         return render_template('add_link.html', short_link='slog.link', long_link='paste a long link above')
@@ -36,9 +46,13 @@ def add_link():
 
 @app.route('/<url_code>')
 def sloglink(url_code):
-
     link = lookup_link(url_code)
     return url_code
+
+
+@app.route('/')
+def go_add():
+    return redirect('https://slog.link/add_link')
 
 
 if __name__ == "__main__":
