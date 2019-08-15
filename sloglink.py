@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request
 from sqlalchemy.exc import IntegrityError
-import sloglinkdb
+import sloglinkdb as db
 import random
 import string
 
@@ -17,15 +17,20 @@ def get_linkstr(n):
 
 
 def archive_link(linkstr, long_link):
-    session = sloglinkdb.connect()
-    new_link = sloglinkdb.Sloglink(linkstr=linkstr, long_link=long_link)
+    session = db.connect()
+    new_link = db.Sloglink(linkstr=linkstr, long_link=long_link)
     session.add(new_link)
-
+    # TODO: If linkstr is in use, remove if it hasn't been used in 1 year
+    # TODO: If total number of linkstr in db > half possible combos,
+    # bump up n for get_linkstr
+    # TODO: Ensure a valid link is provided before archiving
+    # TODO: Check db for long_link. If it exits, use existing linkstr
     session.commit()
 
 
 def lookup_link(url_code):
-    return 'https://slogworx.com'  # TODO: Query the link database for linkstr and return the long link.
+    session = db.connect()
+    return session.query(db.Sloglink).filter(db.Sloglink.linkstr == url_code).one().long_link
 
 
 @app.route('/add_link', methods=['POST', 'GET'])
@@ -47,7 +52,7 @@ def add_link():
 @app.route('/<url_code>')
 def sloglink(url_code):
     link = lookup_link(url_code)
-    return url_code
+    return redirect(link)
 
 
 @app.route('/')
