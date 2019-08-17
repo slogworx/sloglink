@@ -33,9 +33,9 @@
                 <div class="link_header">Shortened Link</div>
                 <div class="shortened_link">
                     {% block content %}
-                    <h2><a href="{{ short_link }}">{{ short_link }}</a></h2>
+                    <h2><a href="{{ short_link }}" target="_blank">{{ short_link }}</a></h2>
                     <div class="to">TO</div>
-                    <a href="{{ long_link }}">{{ long_link }}</a>
+                    {{ long_link }}
                     {% endblock %}
                 </div>
             </div>

@@ -26,7 +26,7 @@ def connect():
     key = load_text('.yt.creds.key')
     url = cred_crypto(text, key, 'decrypt').decode(encoding='utf-8')
 
-    engine = create_engine(url, client_encoding='utf-8', echo=True)
+    engine = create_engine(url, client_encoding='utf-8', echo=False)
     Session = sessionmaker(bind=engine)
 
     return Session()
