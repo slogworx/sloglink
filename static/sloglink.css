@@ -61,3 +61,23 @@ h2 {
     margin: auto;
     width: 38%;
 }
+.home_link {
+    text-decoration: none;
+}
+.disclaimer {
+    padding: 5px;
+    margin: auto;
+    font-size: 10pt;
+}
+a.hi_link:hover {
+    color: yellow;
+    text-decoration: underline;
+}
+a.hi_link:link {
+    color: yellow;
+    text-decoration: underline;
+}
+a.hi_link:visited {
+    color: yellow;
+    text-decoration: underline;
+}

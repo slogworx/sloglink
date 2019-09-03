@@ -59,9 +59,9 @@ def get_linkstr(n):
     return generated
 
 
-def archive_link(linkstr, long_link):
+def archive_link(linkstr, long_link, create_ip):
     session = db.connect()
-    new_link = db.Sloglink(linkstr=linkstr, long_link=long_link)
+    new_link = db.Sloglink(linkstr=linkstr, long_link=long_link, create_ip=create_ip)
     session.add(new_link)
     session.commit()
 
@@ -77,28 +77,31 @@ def add_link():
     if request.method == 'POST':
         long_link = request.form.get("new_link")
         short_link = long_link_exists(long_link)
+        create_ip = request.remote_addr
         if short_link:
             return render_template(
                 'add_link.html', short_link=short_link, long_link=long_link)
-
+        #linkstr = ''
         if not valid_link(long_link):
             short_link = 'https://slog.link'
             long_link = f"""
                 The provided link ({long_link}) is invalid.
-                Please confirm it is a working link that
-                begins with 'https://'"""
-        else:
-            use_linkstr = False
-            while not use_linkstr:  # Only use linkstr if it's new
-                linkstr = get_linkstr(2)
-                use_linkstr = linkstr_exists(linkstr)
+                Please confirm it is a working link, that it
+                begins with 'https://', and does not require authentication to view."""
+            return render_template(
+                'add_link.html', short_link=short_link, long_link=long_link)
 
-            short_link = f'https://slog.link/{linkstr}'
-            try:
-                archive_link(linkstr, long_link)
-            except IntegrityError:  # This shouldn't ever happen
-                short_link = 'https://slog.link'
-                long_link = 'duplicate link element cannot be archived.'
+        old_linkstr = True
+        while old_linkstr:  # Only use linkstr if it's new
+            linkstr = get_linkstr(2)
+            old_linkstr = linkstr_exists(linkstr)
+        #linkstr = get_linkstr(2)
+        short_link = f'https://slog.link/{linkstr}'
+        try:
+            archive_link(linkstr, long_link, create_ip)
+        except IntegrityError:  # This shouldn't ever happen
+            short_link = 'https://slog.link'
+            long_link = 'duplicate link element cannot be archived.'
         return render_template(
             'add_link.html', short_link=short_link, long_link=long_link)
     else:
