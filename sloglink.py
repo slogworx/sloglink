@@ -10,6 +10,17 @@ import string
 app = Flask(__name__)
 
 
+def linkstr_unused(linkstr, months=6):  # TODO: Has a link been unused for months?
+    return False
+
+
+def delete_link(linkstr, session):  # TODO: Delete a link from the database
+    # del_link = db.Sloglink(linkstr=linkstr)
+    # session.delete(del_link)
+    # session.commit()
+    pass
+
+
 def valid_link(link):
     url = urlparse(link)
     if url.scheme == '':
@@ -31,9 +42,11 @@ def linkstr_exists(linkstr):
     try:
         session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
     except Exception:
-        # TODO: If linkstr is in use, remove if it hasn't been used in 1 year
         return False
-
+    # It exists, but...
+    if linkstr_unused(linkstr):  # If not used, pretend it didn't exist
+        delete_link(linkstr, session)
+        return False
     return True
 
 
@@ -51,7 +64,7 @@ def long_link_exists(long_link):
 
 
 def get_linkstr(n):
-    # TODO: Figure out how to increase n if needed
+    # TODO: Figure out how to increase n ONLY if needed
     possible = string.digits + string.ascii_letters
     generated = ""
     for p in range(n):
@@ -81,7 +94,6 @@ def add_link():
         if short_link:
             return render_template(
                 'add_link.html', short_link=short_link, long_link=long_link)
-        #linkstr = ''
         if not valid_link(long_link):
             short_link = 'https://slog.link'
             long_link = f"""
@@ -93,9 +105,8 @@ def add_link():
 
         old_linkstr = True
         while old_linkstr:  # Only use linkstr if it's new
-            linkstr = get_linkstr(2)
+            linkstr = get_linkstr(2)  # Maybe change arg if it takes too long to find?
             old_linkstr = linkstr_exists(linkstr)
-        #linkstr = get_linkstr(2)
         short_link = f'https://slog.link/{linkstr}'
         try:
             archive_link(linkstr, long_link, create_ip)
