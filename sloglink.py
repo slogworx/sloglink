@@ -24,7 +24,7 @@ def delete_link(linkstr, session):  # TODO: Delete a link from the database
 def valid_link(link):
     url = urlparse(link)
     if url.scheme == '':
-        return False  # No http or https was used
+        return False  # No http or https was used, or something is weird
 
     try:
         url = urlopen(link)
@@ -41,7 +41,7 @@ def linkstr_exists(linkstr):
     session = db.connect()
     try:
         session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
-    except Exception:
+    except Exception:  # TODO: test for the exact no-exist error
         return False
     # It exists, but...
     if linkstr_unused(linkstr):  # If not used, pretend it didn't exist
@@ -64,7 +64,6 @@ def long_link_exists(long_link):
 
 
 def get_linkstr(n):
-    # TODO: Figure out how to increase n ONLY if needed
     possible = string.digits + string.ascii_letters
     generated = ""
     for p in range(n):
@@ -94,7 +93,7 @@ def add_link():
         if short_link:
             return render_template(
                 'add_link.html', short_link=short_link, long_link=long_link)
-        if not valid_link(long_link):
+        if not valid_link(long_link):  # TODO: Don't allow slog.link addresses
             short_link = 'https://slog.link'
             long_link = f"""
                 The provided link ({long_link}) is invalid.
@@ -104,13 +103,18 @@ def add_link():
                 'add_link.html', short_link=short_link, long_link=long_link)
 
         old_linkstr = True
+        attempts = 0  # Count how many times we find a used link
+        link_size = 2  # Start at link size 2
         while old_linkstr:  # Only use linkstr if it's new
-            linkstr = get_linkstr(2)  # Maybe change arg if it takes too long to find?
+            if attempts == 3:  # If try more than 3 times, up the length
+                link_size += 1
+            linkstr = get_linkstr(link_size)
             old_linkstr = linkstr_exists(linkstr)
+            attempts += 1
         short_link = f'https://slog.link/{linkstr}'
         try:
             archive_link(linkstr, long_link, create_ip)
-        except IntegrityError:  # This shouldn't ever happen
+        except IntegrityError:  # This shouldn't ever happen, but...
             short_link = 'https://slog.link'
             long_link = 'duplicate link element cannot be archived.'
         return render_template(
