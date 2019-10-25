@@ -25,13 +25,13 @@ def valid_link(link):
     url = urlparse(link)
     if url.scheme == '':
         return False  # No http or https was used, or something is weird
-
+    elif url.hostname == 'slog.link':
+        return False  # Don't make slog.link links to slog.link
     try:
         url = urlopen(link)
-    except Exception:
+    except Exception:  # Can't go to link
         return False
-
-    if url.getcode() == 200:  # URL is working
+    if url.getcode() == 200:  # URL is working, but always has to be 200?
         return True
     else:
         return False
@@ -108,6 +108,7 @@ def add_link():
         while old_linkstr:  # Only use linkstr if it's new
             if attempts == 3:  # If try more than 3 times, up the length
                 link_size += 1
+                attempts = 0
             linkstr = get_linkstr(link_size)
             old_linkstr = linkstr_exists(linkstr)
             attempts += 1
