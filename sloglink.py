@@ -10,17 +10,6 @@ import string
 app = Flask(__name__)
 
 
-def linkstr_unused(linkstr, months=6):  # TODO: Has a link been unused for months?
-    return False
-
-
-def delete_link(linkstr, session):  # TODO: Delete a link from the database
-    # del_link = db.Sloglink(linkstr=linkstr)
-    # session.delete(del_link)
-    # session.commit()
-    pass
-
-
 def valid_link(link):
     url = urlparse(link)
     if url.scheme == '':
@@ -42,10 +31,6 @@ def linkstr_exists(linkstr):
     try:
         session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
     except Exception:  # TODO: test for the exact no-exist error
-        return False
-    # It exists, but...
-    if linkstr_unused(linkstr):  # If not used, pretend it didn't exist
-        delete_link(linkstr, session)
         return False
     return True
 
@@ -106,7 +91,7 @@ def add_link():
         attempts = 0  # Count how many times we find a used link
         link_size = 2  # Start at link size 2
         while old_linkstr:  # Only use linkstr if it's new
-            if attempts == 3:  # If try more than 3 times, up the length
+            if attempts == 3:  # If try more than 3 times, up link_size
                 link_size += 1
                 attempts = 0
             linkstr = get_linkstr(link_size)
