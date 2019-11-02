@@ -23,13 +23,14 @@
             <div class="col-md-8">
                 <form action='https://slog.link/add_link', method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="new_link" method="POST" placeholder="paste a long link here">
+                    <input type="text" class="form-control" name="new_link" method="POST" placeholder="paste a long link here to create a short link">
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
             <div class="col-md-2"></div>
         </div>
+        <div class="col-md-12"><div class="spacer"></div></div>
         <div class="row text-center">
             <div class="col-md-12">
                 <div class="link_header">Shortened Link</div>
@@ -39,6 +40,17 @@
                     <div class="to">TO</div>
                     {{ long_link }}
                     {% endblock %}
+                </div>
+            </div>
+            <div class="col-md-12"><div class="spacer"></div></div>
+            <div class="col-md-12">
+                <div class="link_header">Link List</div>
+                <div class="shortened_link">
+                    {% for linkstr, long_link in all_links %}
+                    <a class="hi_link" href="https://slog.link/{{linkstr}}" target="_blank">https://slog.link/{{linkstr}}</a><br>
+                    {{long_link}}
+                    <hr>
+                    {% endfor %}
                 </div>
             </div>
         </div>

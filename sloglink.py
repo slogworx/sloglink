@@ -69,15 +69,22 @@ def lookup_link(url_code):
         db.Sloglink.linkstr == url_code).one().long_link
 
 
+def get_all_links():
+    session = db.connect()
+    return session.query(db.Sloglink.linkstr, db.Sloglink.long_link).all()  
+
+
 @app.route('/add_link', methods=['POST', 'GET'])
 def add_link():
+    all_links = get_all_links()
     if request.method == 'POST':
         long_link = request.form.get("new_link")
         short_link = long_link_exists(long_link)
         create_ip = request.remote_addr
         if short_link:
             return render_template(
-                'add_link.html', short_link=short_link, long_link=long_link)
+                'add_link.html', short_link=short_link,
+                long_link=long_link, all_links=all_links)
         if not valid_link(long_link):  # TODO: Don't allow slog.link addresses
             short_link = 'https://slog.link'
             long_link = f"""
@@ -85,7 +92,8 @@ def add_link():
                 Please confirm it is a working link, that it
                 begins with 'https://', and does not require authentication to view."""
             return render_template(
-                'add_link.html', short_link=short_link, long_link=long_link)
+                'add_link.html', short_link=short_link,
+                long_link=long_link, all_links=all_links)
 
         old_linkstr = True
         attempts = 0  # Count how many times we find a used link
@@ -104,12 +112,13 @@ def add_link():
             short_link = 'https://slog.link'
             long_link = 'duplicate link element cannot be archived.'
         return render_template(
-            'add_link.html', short_link=short_link, long_link=long_link)
+            'add_link.html', short_link=short_link,
+            long_link=long_link, all_links=all_links)
     else:
         return render_template(
             'add_link.html',
             short_link='https://slog.link',
-            long_link='paste a long link above')
+            long_link='paste a long link above to create a short link', all_links=all_links)
 
 
 @app.route('/<url_code>')

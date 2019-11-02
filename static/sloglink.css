@@ -81,3 +81,6 @@ a.hi_link:visited {
     color: yellow;
     text-decoration: underline;
 }
+.spacer {
+    height: 50px;
+}
