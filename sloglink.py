@@ -39,7 +39,7 @@ def linkstr_exists(linkstr):
 def long_link_exists(long_link):
     session = db.connect()
     linkstr = ''
-
+    
     try:
         linkstr = session.query(db.Sloglink).filter(
             db.Sloglink.long_link == long_link).one().linkstr
@@ -90,7 +90,7 @@ def update_link_use(linkstr):
 def add_link():
     all_links = get_all_links()
     if request.method == 'POST':
-        long_link = request.form.get("new_link")
+        long_link = request.form.get("new_link").replace(" ","")  # Get rid of replace if break
         short_link = long_link_exists(long_link)
         create_ip = request.remote_addr
         if short_link:
