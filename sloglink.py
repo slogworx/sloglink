@@ -97,7 +97,7 @@ def add_link():
             return render_template(
                 'add_link.html', short_link=short_link,
                 long_link=long_link, all_links=all_links)
-        if not valid_link(long_link):  # TODO: Don't allow slog.link addresses
+        if not valid_link(long_link):
             short_link = 'https://slog.link'
             long_link = f"""
                 The provided link ({long_link}) is invalid.
