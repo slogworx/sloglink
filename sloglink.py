@@ -2,6 +2,7 @@ from flask import Flask, redirect, render_template, request
 from sqlalchemy.exc import IntegrityError
 from urllib.parse import urlparse
 from urllib.request import urlopen
+from datetime import datetime
 import sloglinkdb as db
 import random
 import string
@@ -71,7 +72,18 @@ def lookup_link(url_code):
 
 def get_all_links():
     session = db.connect()
-    return session.query(db.Sloglink.linkstr, db.Sloglink.long_link).all()  
+    return reversed(session.query(db.Sloglink.linkstr, db.Sloglink.long_link).all())
+
+
+def update_link_use(linkstr):
+    session = db.connect()
+    try:
+        updated_link = session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
+    except Exception:  # TODO: test for the exact no-exist error   
+         return False
+    updated_link.last_used = datetime.utcnow()
+    session.commit()
+    return True
 
 
 @app.route('/add_link', methods=['POST', 'GET'])
@@ -123,8 +135,12 @@ def add_link():
 
 @app.route('/<url_code>')
 def sloglink(url_code):
+    redir_fail = 'https://slog.link'
     link = lookup_link(url_code)
-    return redirect(link)
+    if update_link_use(url_code):
+        return redirect(link)
+    else:
+        return redirect(redir_fail)
 
 
 @app.route('/')

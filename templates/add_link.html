@@ -18,19 +18,16 @@
             </div>
         </div>
         <a class="home_link" target="_blank" href="https://slog.link"><h1>slog.link</h1></a>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+        <div class="row text-center">
+            <div class="col-md-12">
                 <form action='https://slog.link/add_link', method="POST">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="new_link" method="POST" placeholder="paste a long link here to create a short link">
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="new_link" method="POST" placeholder="paste a long link here to create a short link">
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
-            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-12"><div class="spacer"></div></div>
         <div class="row text-center">
             <div class="col-md-12">
                 <div class="link_header">Shortened Link</div>
@@ -42,17 +39,32 @@
                     {% endblock %}
                 </div>
             </div>
-            <div class="col-md-12"><div class="spacer"></div></div>
+        </div>
+        <div class="row text-center">
             <div class="col-md-12">
-                <div class="link_header">Link List</div>
-                <div class="shortened_link">
-                    {% for linkstr, long_link in all_links %}
-                    <a class="hi_link" href="https://slog.link/{{linkstr}}" target="_blank">https://slog.link/{{linkstr}}</a><br>
-                    {{long_link}}
-                    <hr>
-                    {% endfor %}
+                <div class="link_alt">Privacy Disclosure</div>
+                <div class="disclaimer">
+                    Your IP is logged ONLY if you create a link. I timestamp creation of a link, and I timestamp use of the 
+                    link (but not the IP using it). I do this to prevent abuse and to order links by popularity. I don't shim 
+                    or track whom follows what links, or do any additional analytics. I don't share or sell my data. You can 
+                    see my open source code  
+                    <a class="hi_link" href="https://slog.link/9W" target="_blank">here</a>.
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <div class="link_alt">Link List</div>
+                    <div class="link_list">
+                        {% for linkstr, long_link in all_links %}
+                        <a class="hi_link" href="https://slog.link/{{linkstr}}" target="_blank">https://slog.link/{{linkstr}}</a><br>
+                        {{long_link}}
+                        <hr>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
 </body>
