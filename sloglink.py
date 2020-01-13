@@ -72,7 +72,7 @@ def lookup_link(url_code):
 
 def get_all_links():
     session = db.connect()
-    return reversed(session.query(db.Sloglink.linkstr, db.Sloglink.long_link).all())
+    return reversed(session.query(db.Sloglink.linkstr, db.Sloglink.long_link, db.Sloglink.last_used).order_by(db.Sloglink.last_used).all())
 
 
 def update_link_use(linkstr):

@@ -12,12 +12,28 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-12">
-                <a class="home_link" target="_blank" href="https://slogworx.com">
-                    <img class="logo" alt="slogworx logo" src="/static/slogworx_logo.png">
-                </a>
+                <img class="logo" alt="slogworx logo" src="/static/slogworx_logo.png">
             </div>
         </div>
-        <a class="home_link" target="_blank" href="https://slog.link"><h1>slog.link</h1></a>
+        <h1><a href="https://slogworx.com/">slogworx.com</a></h1>
+        <div class="link_menu">
+            [ <!-- <a href="https://slogworx.com/slogblog" target="_blank">slogblog</a> | --> <u>slog.link</u> | <a href="https://slogworx.com/scan" target="_blank">portscan</a> ]
+        </div>
+        <br>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <div class="link_alt">Privacy Disclosure</div>
+                <div class="disclaimer">
+                    Your IP is logged ONLY if you create a link. I timestamp the creation of each link, and I timestamp the last 
+                    use of that link (but not the IP of the user). I do this to prevent abuse and to order the link list by frequency.
+                    I don't shim or track whom follows which links. I don't do any analytics. I don't share or sell my data. 
+                    I invite you to review my source code  
+                    <a class="hi_link" href="https://slog.link/9W" target="_blank">here</a> (MIT open source license).
+                </div>
+            </div>
+        </div>
+        <hr>
+        <br>
         <div class="row text-center">
             <div class="col-md-12">
                 <form action='https://slog.link/add_link', method="POST">
@@ -40,24 +56,14 @@
                 </div>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-md-12">
-                <div class="link_alt">Privacy Disclosure</div>
-                <div class="disclaimer">
-                    Your IP is logged ONLY if you create a link. I timestamp the creation of each link, and I timestamp the last 
-                    use of that link (but not the IP of the user). I do this to prevent abuse and to order the link list by frequency.
-                    I don't shim or track whom follows which links. I don't do any analytics. I don't share or sell my data. 
-                    I invite you to review my source code  
-                    <a class="hi_link" href="https://slog.link/9W" target="_blank">here</a> (MIT open source license).
-                </div>
-            </div>
-        </div>
+        <br>
+        <hr>
         <div class="row text-center">
             <div class="col-md-12">
                 <div class="link_alt">Link List</div>
                     <div class="link_list">
-                        {% for linkstr, long_link in all_links %}
-                        <a class="hi_link" href="https://slog.link/{{linkstr}}" target="_blank">https://slog.link/{{linkstr}}</a><br>
+                        {% for linkstr, long_link, last_used in all_links %}
+                        <b>Used {{last_used.strftime('%m-%d-%Y')}}</b><br><a class="hi_link" href="https://slog.link/{{linkstr}}" target="_blank">https://slog.link/{{linkstr}}</a><br>
                         {{long_link}}
                         <hr>
                         {% endfor %}

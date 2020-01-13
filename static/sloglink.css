@@ -109,3 +109,8 @@ a.hi_link:visited {
 .spacer {
     height: 50px;
 }
+.link_menu {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 14pt;
+}
