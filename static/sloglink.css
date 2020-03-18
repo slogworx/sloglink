@@ -7,7 +7,7 @@ body {
 }
 img.logo {
     width: 150px;
-    padding: 10px;
+    padding: 20px;
     border-radius: 25px;
     border-style: solid;
     border-width: 5px;
@@ -26,12 +26,13 @@ a:visited {
     text-decoration: none;
 }
 h1 {
-    font-weight: bolder;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
+    font-size: 16pt;
+    font-weight: bolder;
 }
 h2 {
-    font-size: 16pt;
+    font-size: 14pt;
     font-weight: bolder;
 }
 .link_header {
@@ -84,16 +85,6 @@ h2 {
     margin: auto;
     word-wrap: break-word;
 }
-.link_list {
-    width: 50%;
-    font-size: 8pt;
-    border-style: solid;
-    border-color: white;
-    border-width: 2px;
-    padding: 5px;
-    margin: auto;
-    word-wrap: break-word;
-}
 a.hi_link:hover {
     color: yellow;
     text-decoration: underline;
@@ -105,12 +96,4 @@ a.hi_link:link {
 a.hi_link:visited {
     color: yellow;
     text-decoration: underline;
-}
-.spacer {
-    height: 50px;
-}
-.link_menu {
-    text-align: center;
-    font-weight: bolder;
-    font-size: 14pt;
 }

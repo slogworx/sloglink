@@ -129,7 +129,7 @@ def add_link():
         return render_template(
             'add_link.html',
             short_link='https://slog.link',
-            long_link='paste a long link above to create a short link', all_links=all_links)
+            long_link='Paste a long link above and click Submit.', all_links=all_links)
 
 
 @app.route('/<url_code>')
