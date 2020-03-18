@@ -15,30 +15,22 @@
                 <img class="logo" alt="slogworx logo" src="/static/slogworx_logo.png">
             </div>
         </div>
-        <h1><a href="https://slogworx.com/">slogworx.com</a></h1>
-        <div class="link_menu">
-            [ <!-- <a href="https://slogworx.com/slogblog" target="_blank">slogblog</a> | --> <u>slog.link</u> | <a href="https://slogworx.com/scan" target="_blank">portscan</a> ]
-        </div>
-        <br>
+        <h1><a href="https://slogworx.com/">slog.link</a></h1>
         <div class="row text-center">
             <div class="col-md-12">
-                <div class="link_alt">Privacy Disclosure</div>
                 <div class="disclaimer">
-                    Your IP is logged ONLY if you create a link. I timestamp the creation of each link, and I timestamp the last 
-                    use of that link (but not the IP of the user). I do this to prevent abuse and to order the link list by frequency.
-                    I don't shim or track whom follows which links. I don't do any analytics. I don't share or sell my data. 
-                    I invite you to review my source code  
-                    <a class="hi_link" href="https://slog.link/9W" target="_blank">here</a> (MIT open source license).
+                    <p>Links are not shimmed or tracked. No client side data is kept/shared/sold.</p>
+                    <p>Review the open source code  
+                    <a class="hi_link" href="https://slog.link/9W" target="_blank">here</a>.
+                    </p>
                 </div>
             </div>
         </div>
-        <hr>
-        <br>
         <div class="row text-center">
             <div class="col-md-12">
                 <form action='https://slog.link/add_link', method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="new_link" method="POST" placeholder="paste a long link here to create a short link">
+                        <input type="text" class="form-control" name="new_link" method="POST" placeholder="paste a long link here to create a short link below">
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
@@ -50,24 +42,9 @@
                 <div class="shortened_link">
                     {% block content %}
                     <h2><a class="hi_link" href="{{ short_link }}" target="_blank">{{ short_link }}</a></h2>
-                    <div class="to">TO</div>
+                    <div class="to">Redirects To</div>
                     {{ long_link }}
                     {% endblock %}
-                </div>
-            </div>
-        </div>
-        <br>
-        <hr>
-        <div class="row text-center">
-            <div class="col-md-12">
-                <div class="link_alt">Link List</div>
-                    <div class="link_list">
-                        {% for linkstr, long_link, last_used in all_links %}
-                        <b>Used {{last_used.strftime('%m-%d-%Y')}}</b><br><a class="hi_link" href="https://slog.link/{{linkstr}}" target="_blank">https://slog.link/{{linkstr}}</a><br>
-                        {{long_link}}
-                        <hr>
-                        {% endfor %}
-                    </div>
                 </div>
             </div>
         </div>

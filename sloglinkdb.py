@@ -15,7 +15,6 @@ class Sloglink(Base):
     long_link = Column(String, index=True, unique=True)
     created = Column(DateTime, default=datetime.utcnow)
     last_used = Column(DateTime, default=datetime.utcnow)
-    create_ip = Column(String, index=True)
 
     def __repr__(self):
         return "<Sloglink(linkstr=%s, long_link=%s)>" % (self.linkstr, self.long_link)

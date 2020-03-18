@@ -57,9 +57,9 @@ def get_linkstr(n):
     return generated
 
 
-def archive_link(linkstr, long_link, create_ip):
+def archive_link(linkstr, long_link):
     session = db.connect()
-    new_link = db.Sloglink(linkstr=linkstr, long_link=long_link, create_ip=create_ip)
+    new_link = db.Sloglink(linkstr=linkstr, long_link=long_link)
     session.add(new_link)
     session.commit()
 
@@ -92,7 +92,6 @@ def add_link():
     if request.method == 'POST':
         long_link = request.form.get("new_link").replace(" ","")  # Get rid of replace if break
         short_link = long_link_exists(long_link)
-        create_ip = request.remote_addr
         if short_link:
             return render_template(
                 'add_link.html', short_link=short_link,
@@ -119,7 +118,7 @@ def add_link():
             attempts += 1
         short_link = f'https://slog.link/{linkstr}'
         try:
-            archive_link(linkstr, long_link, create_ip)
+            archive_link(linkstr, long_link)
         except IntegrityError:  # This shouldn't ever happen, but...
             short_link = 'https://slog.link'
             long_link = 'duplicate link element cannot be archived.'

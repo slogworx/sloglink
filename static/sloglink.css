@@ -7,7 +7,7 @@ body {
 }
 img.logo {
     width: 150px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 25px;
     border-style: solid;
     border-width: 5px;
@@ -36,13 +36,14 @@ h2 {
 }
 .link_header {
     width: 50%;
-    font-size: 16pt;
+    font-size: 14pt;
     background: #ffffff;
     color: #006600;
     font-weight: bolder;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
+    border-radius: 5px 5px 0px 0px; 
 }
 .link_alt {
     width: 50%;
@@ -56,13 +57,14 @@ h2 {
 }
 .shortened_link {
     width: 50%;
-    font-size: 14pt;
+    font-size: 12pt;
     border-style: solid;
     border-color: white;
     border-width: 2px;
-    padding: 5px;
+    padding: 3px;
     margin: auto;
     word-wrap: break-word;
+    border-radius: 0px 0px 5px 5px;
 }
 .to {
     background: #ffffff;
@@ -70,16 +72,14 @@ h2 {
     font-weight: bold;
     margin: auto;
     width: 38%;
+    border-radius: 5px 5px 5px 5px;
 }
 .home_link {
     text-decoration: none;
 }
 .disclaimer {
     width: 50%;
-    font-size: 8pt;
-    border-style: solid;
-    border-color: white;
-    border-width: 2px;
+    font-size: 10pt;
     padding: 5px;
     margin: auto;
     word-wrap: break-word;
