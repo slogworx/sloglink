@@ -1,6 +1,6 @@
 '''
     I use this to encrypt database credentials or other small messages for web stuff.
-    Please change the key filename, and set the permissions properly.
+    Please set the permissions properly on the files. 'chmod 600' should do the trick.
 '''
 from cryptography.fernet import Fernet
 import sys
