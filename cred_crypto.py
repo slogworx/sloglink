@@ -5,12 +5,10 @@
 from cryptography.fernet import Fernet
 import sys
 
-SECRET_KEY = '.keep_me_secret.key'
 
-
-def new_key():
+def new_key(key_filename):
     key = Fernet.generate_key()
-    with open(SECRET_KEY, 'w') as kf:
+    with open(key_filename, 'w') as kf:
         kf.write(key.decode(encoding='utf-8'))
     return key
 
@@ -40,19 +38,22 @@ def cred_crypto(btext, bkey, action):
     return result
 
 
-def main(argv):
-    if len(argv) == 2:  # New message, generate a new key.
-        key = new_key()
-        text = get_text(argv[1])
-        save_text(cred_crypto(text, key, 'encrypt').decode(encoding='utf-8'), argv[1])
+def main(): 
 
-    elif len(argv) == 4:  # Use existing key to encrypt/decrypt.
-        key = load_key(argv[2])
-        text = get_text(argv[1])
-        save_text(cred_crypto(text, key, argv[3]).decode(encoding='utf-8'), argv[1])
-    else:
-        print(f"usage: {argv[0]} txt_filename [key_filename] [action]")
+    print('This script creates a key and encrypts it along with your SQLAlchemy connection string.')
+    key_filename = input('Enter a filename to store your encryption key: ')
+    key = new_key(key_filename)
+    print(f'Your key is stored in \'{key_filename}\'. Please remember it, and make sure to \'chmod 600\' the file.')
+    
+    connection_string = input('Enter connection string (If you don\'t know what it is, see https://slog.link/BT): ').rstrip().encode(encoding='utf-8')
+    encrypted_string = cred_crypto(connection_string, key, 'encrypt')
+    cred_filename = input('Enter the filename to store your encrypted credentials: ').rstrip()
+    save_text(str(encrypted_string,'utf-8'), cred_filename)
+    print(f'Your credentials are stored in \'{cred_filename}\'. Please remember it, and make sure to \'chmod 600\' the file.\n')
+    print('Make sure to edit sloglinkdb.py to update the filenames in connect(). Authentication wont work without that step.\n\n')
+    
+
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

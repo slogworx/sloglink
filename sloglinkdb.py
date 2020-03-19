@@ -22,8 +22,9 @@ class Sloglink(Base):
 
 def connect():
     # Retrieve and decrypt the PostgreSQL connection url
-    text = load_text('.yt.creds')    # chmod these to 600!
-    key = load_text('.yt.creds.key')
+    # These need to be changed to what what was created with cred_crypto.py via command line
+    text = load_text('.your.encrypted.connection_string')
+    key = load_text('.your.encryption.key')
     url = cred_crypto(text, key, 'decrypt').decode(encoding='utf-8')
 
     engine = create_engine(url, client_encoding='utf-8', echo=False)
