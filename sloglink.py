@@ -3,6 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from urllib.parse import urlparse
 from urllib.request import urlopen
 from datetime import datetime
+from pathlib import Path
 import sloglinkdb as db
 import random
 import string
