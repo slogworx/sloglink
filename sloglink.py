@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request
 from sqlalchemy.exc import IntegrityError
+from urllib.error import HTTPError
 from urllib.parse import urlparse
 from urllib.request import urlopen
 from datetime import datetime
@@ -18,14 +19,18 @@ def valid_link(link):
         return False  # No http or https was used, or something is weird
     elif url.hostname == 'slog.link':
         return False  # Don't make slog.link links to slog.link
+    
     try:
-        url = urlopen(link)
-    except Exception:  # Can't go to link
-        return False
-    if url.getcode() == 200:  # URL is working, but always has to be 200?
-        return True
-    else:
-        return False
+        url_resp = urlopen(link)
+    except HTTPError as e:  # Can't go to link for some reason
+        if e.getcode() == 503:  # Link is valid but Cloudflare didn't like the header or link timed out
+            return True
+        else:
+            return False
+    except Exception:
+        return False  # No idea what happened
+    
+    return True  # Link OK!
 
 
 def linkstr_exists(linkstr):
