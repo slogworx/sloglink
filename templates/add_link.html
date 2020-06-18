@@ -40,7 +40,10 @@
                 <div class="link_header">Shortened Link</div>
                 <div class="shortened_link">
                     {% block content %}
-                    <h2><a class="hi_link" href="{{ short_link }}" target="_blank">{{ short_link }}</a></h2>
+                    <h2>
+                        <input type="text" value="{{ short_link }}" id="shortLink">
+                        <button onclick="copyToPaste()">Copy to Paste</button>
+                    </h2>
                     <div class="to">Redirects To</div>
                     {{ long_link }}
                     {% endblock %}
@@ -49,4 +52,13 @@
         </div>
     </div>
     <br>
+    <script>
+        function copyToPaste() {
+          var copyText = document.getElementById("shortLink");
+          copyText.select();
+          copyText.setSelectionRange(0, 32)
+          document.execCommand("copy");
+          alert("Copied link: " + copyText.value);
+        }
+    </script>
 </body>
