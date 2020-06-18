@@ -97,3 +97,24 @@ a.hi_link:visited {
     color: yellow;
     text-decoration: underline;
 }
+.shortlinks_list {
+    text-align: left;
+    padding: 50px 0px 0px 100px;
+    border-color: white;
+    border-style: solid;
+    border-width: 4px;
+    height: 90%;
+}
+.options_panel {
+    height: 90%;
+}
+.delete_button {
+    text-align: center;
+    padding: 25px;
+}
+.admin_logo {
+    padding: 50px;
+}
+.footer {
+    height: 50px;
+}

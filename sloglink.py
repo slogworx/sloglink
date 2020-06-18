@@ -78,6 +78,17 @@ def archive_link(linkstr, long_link):  # TODO: Check exceptions? Does this need 
     logging.info(f'[{str(datetime.now())}]: {long_link} successfully added using key of {linkstr}.')
 
 
+def delete_link(linkstr):
+    session = db.connect()
+    slog_link = session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr)
+    success = slog_link.delete()
+    if success:
+        session.commit()
+        logging.info(f'[{str(datetime.now())}]: Deleted link with link key {linkstr}.')
+    else:
+        logging.warning(f'[{str(datetime.now())}]: Failed to delete link with link key {linkstr}.')
+
+
 def lookup_link(url_code):
     session = db.connect()
     try:
@@ -155,6 +166,20 @@ def add_link():
             long_link='Paste a long link above and click Submit.', all_links=all_links)
 
 
+@app.route('/housekeeping',methods=['POST', 'GET'])
+def slogadmin():
+    if request.method == 'POST':
+        delete_list = request.form.getlist("delete_list")
+        for key in delete_list:
+            delete_link(key)
+
+    slog_links = []
+    for link in get_all_links():
+        slog_links.append(link)
+
+    return render_template('slogadmin.html',slog_links=slog_links)
+
+    
 @app.route('/<url_code>')
 def sloglink(url_code):
     redir_fail = 'https://slog.link'
