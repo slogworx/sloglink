@@ -45,7 +45,7 @@
                     {% block content %}
                     <h2>
                         <input type="text" value="{{ short_link }}" id="shortLink">
-                        <button onclick="copyToPaste()">Copy to Paste</button>
+                        <button onclick="copyToPaste()" class="btn btn-success">Copy to Paste</button>
                     </h2>
                     <div class="to">Redirects To</div>
                     {{ long_link }}

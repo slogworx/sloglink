@@ -4,13 +4,20 @@ from urllib.error import HTTPError
 from urllib.parse import urlparse
 from urllib.request import urlopen
 from datetime import datetime
+from random import choice
 from pathlib import Path
+from cred_crypto import load_text
 import logging
 import sloglinkdb as db
 import random
 import string
 
-
+RESTRICTED_KEYS = (  # Reserved or Nope
+    'kkk',  # Nope
+    'KKK',  # Nope
+    'blm',  # Reserved
+    'BLM',  # Reserved
+)
 logging.basicConfig(filename='log/sloglink.log', level=logging.INFO)
 app = Flask(__name__)
 
@@ -41,6 +48,8 @@ def valid_link(link):
 
 def linkstr_exists(linkstr):
     session = db.connect()
+    if linkstr in RESTRICTED_KEYS:  # Keeps RESTRICTED_KEYS from being generated
+        return True
     try:
         session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
     except Exception:  # TODO: test for the exact exception
@@ -179,7 +188,18 @@ def slogadmin():
 
     return render_template('slogadmin.html',slog_links=slog_links)
 
-    
+
+@app.route('/BLM')
+@app.route('/blm')
+def blm():
+    black_authors = []
+    with open('static/black_authors', 'r') as black_authors_file:
+        for name in black_authors_file:
+            black_authors.append(name.strip('\n'))
+    logging.info(f'[{str(datetime.now())}]: BLM Author Suggestion!')
+    return redirect(f"https://duckduckgo.com/?q={choice(black_authors).replace(' ','+')}+Author+Book")    
+
+
 @app.route('/<url_code>')
 def sloglink(url_code):
     redir_fail = 'https://slog.link'

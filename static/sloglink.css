@@ -99,7 +99,7 @@ a.hi_link:visited {
 }
 .shortlinks_list {
     text-align: left;
-    padding: 50px 0px 0px 100px;
+    padding: 25px 0px 0px 25px;
     border-color: white;
     border-style: solid;
     border-width: 4px;
@@ -107,6 +107,10 @@ a.hi_link:visited {
 }
 .options_panel {
     height: 90%;
+    border-color: white;
+    border-style: solid;
+    border-width: 4px;
+    height: 500px;
 }
 .delete_button {
     text-align: center;
