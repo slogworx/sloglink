@@ -179,9 +179,13 @@ def add_link():
 def slogadmin():
     if request.method == 'POST':
         delete_list = request.form.getlist("delete_list")
-        for key in delete_list:
-            delete_link(key)
-
+        if len(delete_list):
+            for key in delete_list:
+                delete_link(key)
+        long_link = request.form.get("long_link")
+        vanity_link = request.form.get("vanity_link")
+        if len(long_link) and len(vanity_link):
+            logging.info(f'long_link: {long_link} vanity_link: {vanity_link}')
     slog_links = []
     for link in get_all_links():
         slog_links.append(link)

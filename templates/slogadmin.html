@@ -36,15 +36,24 @@
                         <a class="hi_link" href="{{ link[1] }}" target='_blank'>https://slog.link/{{ link[0] }}</a> (last used: {{ link[2] }})
                         </label><br>
                     {% endfor %}
-                    <p class="delete_button"><button type="submit" class="btn btn-danger">Delete</button></p>
+                    <p class="admin_button"><button type="submit" class="btn btn-danger">Delete</button></p>
                     </form>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8">
-                <h2>Custom Vanity Links</h2>
-                <div class="options_panel">
-
+                <h2>Create Custom Vanity Link</h2>
+                <div class="vanity_panel">
+                    <div class="valid_message">Valid link keys have no spaces and can include A-Z, a-z, 0-9, '-' and '_'.</div>
+                    <span class="vanity_link">
+                        <form action="/housekeeping" method="POST">
+                            <label>Add link</label>
+                            <input placeholder="Enter a valid link to shorten" name="long_link"> to 
+                            <label>https://slog.link/</label>
+                            <input placeholder="Enter a valid link key" name="vanity_link">
+                            <p class="admin_button"><button type="submit" class="btn btn-danger">Submit</button></p>
+                          </form>
+                    </span>
                 </div>
             </div>
         </div>
