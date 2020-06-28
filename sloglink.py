@@ -17,6 +17,7 @@ RESTRICTED_KEYS = (  # Reserved or Nope
     'KKK',  # Nope
     'blm',  # Reserved
     'BLM',  # Reserved
+    'housekeeping',  #Reserved
 )
 logging.basicConfig(filename='log/sloglink.log', level=logging.INFO)
 app = Flask(__name__)
@@ -34,6 +35,9 @@ def valid_link(link):
     except HTTPError as e:  # Can't go to link for some reason
         if e.getcode() == 503:  # Link is valid but Cloudflare didn't like the header or link timed out
             logging.info(f'[{str(datetime.now())}]: {link} is valid, but returned error 503.')
+            return True
+        elif e.getcode() == 403:
+            logging.info(f'[{str(datetime.now())}]: {link} is valid, but returned error 403.')
             return True
         else:
             logging.warning(f'[{str(datetime.now())}]: {link} is an invalid url, returned HTTPError {e.getcode()}.')
@@ -177,6 +181,7 @@ def add_link():
 
 @app.route('/housekeeping',methods=['POST', 'GET'])
 def slogadmin():
+    valid_link_response = ''
     if request.method == 'POST':
         delete_list = request.form.getlist("delete_list")
         if len(delete_list):
@@ -184,13 +189,28 @@ def slogadmin():
                 delete_link(key)
         long_link = request.form.get("long_link")
         vanity_link = request.form.get("vanity_link")
-        if len(long_link) and len(vanity_link):
-            logging.info(f'long_link: {long_link} vanity_link: {vanity_link}')
+        try:
+            if len(long_link) and len(vanity_link):  # Vanity link form was used
+                if valid_link(long_link):  # Link must be valid
+                    short_link = long_link_exists(long_link)  # Link must not already exist
+                    if not short_link:
+                        if not linkstr_exists(vanity_link):  # Link key must not be in use
+                            archive_link(vanity_link, long_link)
+                            valid_link_response = f'Added "https://slog.link/{vanity_link}" =>  "{long_link}".'
+                            logging.info(valid_link_response)
+                        else:
+                            valid_link_response = f'{vanity_link} is already in use.'
+                    else:
+                        valid_link_response = f'"{long_link}" is already linked via "https://slog.link/{short_link}".'
+                else:
+                    valid_link_response = f'"{long_link}" is not a valid URL.'
+        except TypeError:
+            pass
     slog_links = []
     for link in get_all_links():
         slog_links.append(link)
 
-    return render_template('slogadmin.html',slog_links=slog_links)
+    return render_template('slogadmin.html',slog_links=slog_links,link_response=valid_link_response)
 
 
 @app.route('/BLM')
