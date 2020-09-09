@@ -52,8 +52,7 @@ def valid_link(link):
 
 def linkstr_exists(linkstr):
     session = db.connect()
-    if linkstr in RESTRICTED_KEYS:  # Keeps RESTRICTED_KEYS from being generated
-        return True
+
     try:
         session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
     except Exception:  # TODO: test for the exact exception
@@ -158,6 +157,8 @@ def add_link():
                     f'[{str(datetime.now())}]: Link key length required an upgrade to {link_size}!')
                 attempts = 0
             linkstr = get_linkstr(link_size)
+            if linkstr in RESTRICTED_KEYS:  # Keeps RESTRICTED_KEYS from being generated
+                continue    
             old_linkstr = linkstr_exists(linkstr)
             attempts += 1
         short_link = f'https://slog.link/{linkstr}'
@@ -179,6 +180,9 @@ def add_link():
             long_link='Paste a long link above and click Submit.', all_links=all_links)
 
 
+# Make sure to comment this out before publishing until auth is created for it!
+# TODO: houskeeping auth
+'''
 @app.route('/housekeeping',methods=['POST', 'GET'])
 def slogadmin():
     valid_link_response = ''
@@ -211,8 +215,10 @@ def slogadmin():
         slog_links.append(link)
 
     return render_template('slogadmin.html',slog_links=slog_links,link_response=valid_link_response)
+'''
 
 
+# Black Lives Matter!
 @app.route('/BLM')
 @app.route('/blm')
 def blm():
