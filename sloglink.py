@@ -18,6 +18,7 @@ RESTRICTED_KEYS = (  # Reserved or Nope
     'blm',  # Reserved
     'BLM',  # Reserved
     'housekeeping',  #Reserved
+    'long',  #Reserved
 )
 logging.basicConfig(filename='log/sloglink.log', level=logging.INFO)
 app = Flask(__name__)
@@ -109,6 +110,15 @@ def lookup_link(url_code):
         long_link = None
     
     return long_link
+
+
+def lookup_url(long_url):
+    session = db.connect()
+    try:
+        linkstr = session.query(db.Sloglink).filter(db.Sloglink.long_link == long_url).one().linkstr
+    except Exception:
+        linkstr = None
+    return linkstr
 
 
 def get_all_links():
@@ -234,8 +244,6 @@ def blm():
 def sloglink(url_code):
     redir_fail = 'https://slog.link'
     link = lookup_link(url_code)
-    if link == None:
-        pass  # TODO: Figure out how to message the user that they used an invalid link key
     if update_link_use(url_code):
         logging.info(f'[{str(datetime.now())}]: Redirected {url_code} to {link}.')
         return redirect(link)
@@ -250,6 +258,16 @@ def sloglink(url_code):
             logging.warning(
                 f'[{str(datetime.now())}]: Link key {url_code} was requested but has not been assigned to a link!')
         return redirect(redir_fail)
+
+
+@app.route('/long', methods=['POST'])
+def return_url_code():
+    long_link = request.form.get("long_link")
+    linkstr = lookup_url(long_link)
+    if linkstr is None:
+        return 'None'
+    else:
+        return linkstr
 
 
 @app.route('/')
