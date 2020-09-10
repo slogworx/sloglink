@@ -240,8 +240,15 @@ def sloglink(url_code):
         logging.info(f'[{str(datetime.now())}]: Redirected {url_code} to {link}.')
         return redirect(link)
     else:
-        logging.warning(
-            f'[{str(datetime.now())}]: Link key {url_code} was requested but has not been assigned to a link!')
+        # The requested key was not valid, so log it
+        # But first check for invalid characters to keep logs from getting cluttered by hackbots
+        log_use = True
+        for symbol in list(string.punctuation):
+            if symbol in list(url_code):
+                log_use = False
+        if log_use:
+            logging.warning(
+                f'[{str(datetime.now())}]: Link key {url_code} was requested but has not been assigned to a link!')
         return redirect(redir_fail)
 
 
