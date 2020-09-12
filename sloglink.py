@@ -51,11 +51,11 @@ def valid_link(link):
     return True  # Link OK!
 
 
-def linkstr_exists(linkstr):
+def link_key_exists(link_key):
     session = db.connect()
 
     try:
-        session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
+        session.query(db.Sloglink).filter(db.Sloglink.link_key == link_key).one()
     except Exception:  # TODO: test for the exact exception
         return False
     return True
@@ -63,19 +63,19 @@ def linkstr_exists(linkstr):
 
 def long_link_exists(long_link):
     session = db.connect()
-    linkstr = ''
+    link_key = ''
     
     try:
-        linkstr = session.query(db.Sloglink).filter(
-            db.Sloglink.long_link == long_link).one().linkstr
+        link_key = session.query(db.Sloglink).filter(
+            db.Sloglink.long_link == long_link).one().link_key
     except Exception:
         return False
     
     logging.warning(f'[{str(datetime.now())}]: {long_link} was submitted but already exists in the database.')
-    return f'https://slog.link/{linkstr}'
+    return f'https://slog.link/{link_key}'
 
 
-def get_linkstr(n):
+def get_link_key(n):
     possible = string.digits + string.ascii_letters
     generated = ""
     for p in range(n):
@@ -83,29 +83,29 @@ def get_linkstr(n):
     return generated
 
 
-def archive_link(linkstr, long_link):  # TODO: Check exceptions? Does this need to return success/failure value?
+def archive_link(link_key, long_link):  # TODO: Check exceptions? Does this need to return success/failure value?
     session = db.connect()
-    new_link = db.Sloglink(linkstr=linkstr, long_link=long_link)
+    new_link = db.Sloglink(link_key=link_key, long_link=long_link)
     session.add(new_link)
     session.commit()
-    logging.info(f'[{str(datetime.now())}]: {long_link} successfully added using key of {linkstr}.')
+    logging.info(f'[{str(datetime.now())}]: {long_link} successfully added using key of {link_key}.')
 
 
-def delete_link(linkstr):
+def delete_link(link_key):
     session = db.connect()
-    slog_link = session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr)
+    slog_link = session.query(db.Sloglink).filter(db.Sloglink.link_key == link_key)
     success = slog_link.delete()
     if success:
         session.commit()
-        logging.info(f'[{str(datetime.now())}]: Deleted link with link key {linkstr}.')
+        logging.info(f'[{str(datetime.now())}]: Deleted link with link key {link_key}.')
     else:
-        logging.warning(f'[{str(datetime.now())}]: Failed to delete link with link key {linkstr}.')
+        logging.warning(f'[{str(datetime.now())}]: Failed to delete link with link key {link_key}.')
 
 
 def lookup_link(url_code):
     session = db.connect()
     try:
-        long_link = session.query(db.Sloglink).filter(db.Sloglink.linkstr == url_code).one().long_link
+        long_link = session.query(db.Sloglink).filter(db.Sloglink.link_key == url_code).one().long_link
     except Exception:
         long_link = None
     
@@ -115,26 +115,26 @@ def lookup_link(url_code):
 def lookup_url(long_url):
     session = db.connect()
     try:
-        linkstr = session.query(db.Sloglink).filter(db.Sloglink.long_link == long_url).one().linkstr
+        link_key = session.query(db.Sloglink).filter(db.Sloglink.long_link == long_url).one().link_key
     except Exception:
-        linkstr = None
-    return linkstr
+        link_key = None
+    return link_key
 
 
 def get_all_links():
     session = db.connect()
-    return reversed(session.query(db.Sloglink.linkstr, db.Sloglink.long_link, db.Sloglink.last_used).order_by(db.Sloglink.last_used).all())
+    return reversed(session.query(db.Sloglink.link_key, db.Sloglink.long_link, db.Sloglink.last_used).order_by(db.Sloglink.last_used).all())
 
 
-def update_link_use(linkstr):
+def update_link_use(link_key):
     session = db.connect()
     try:
-        updated_link = session.query(db.Sloglink).filter(db.Sloglink.linkstr == linkstr).one()
+        updated_link = session.query(db.Sloglink).filter(db.Sloglink.link_key == link_key).one()
     except Exception:  # TODO: test for the exact exception  
          return False
     updated_link.last_used = datetime.utcnow()
     session.commit()
-    logging.info(f'[{str(datetime.now())}]: Key {linkstr} last_used updated.')
+    logging.info(f'[{str(datetime.now())}]: Key {link_key} last_used updated.')
     return True
 
 
@@ -157,28 +157,28 @@ def add_link():
                 'add_link.html', short_link=short_link,
                 long_link=long_link, all_links=all_links)
 
-        old_linkstr = True
+        old_link_key = True
         attempts = 0  # Count how many times we find a used link
         link_size = 2  # Start at link size 2
-        while old_linkstr:  # Only use linkstr if it's new
+        while old_link_key:  # Only use link_key if it's new
             if attempts == 3:  # If try more than 3 times, up link_size
                 link_size += 1
                 logging.warning(
                     f'[{str(datetime.now())}]: Link key length required an upgrade to {link_size}!')
                 attempts = 0
-            linkstr = get_linkstr(link_size)
-            if linkstr in RESTRICTED_KEYS:  # Keeps RESTRICTED_KEYS from being generated
+            link_key = get_link_key(link_size)
+            if link_key in RESTRICTED_KEYS:  # Keeps RESTRICTED_KEYS from being generated
                 continue    
-            old_linkstr = linkstr_exists(linkstr)
+            old_link_key = link_key_exists(link_key)
             attempts += 1
-        short_link = f'https://slog.link/{linkstr}'
+        short_link = f'https://slog.link/{link_key}'
         try:
-            archive_link(linkstr, long_link)
+            archive_link(link_key, long_link)
         except IntegrityError:  # This shouldn't ever happen, but...
             short_link = 'https://slog.link'
             long_link = 'duplicate link element cannot be archived.'
             logging.warning(
-                f'[{str(datetime.now())}]: Duplicate link key {linkstr} was generated but not detected!')
+                f'[{str(datetime.now())}]: Duplicate link key {link_key} was generated but not detected!')
         
         return render_template(
             'add_link.html', short_link=short_link,
@@ -208,7 +208,7 @@ def slogadmin():
                 if valid_link(long_link):  # Link must be valid
                     short_link = long_link_exists(long_link)  # Link must not already exist
                     if not short_link:
-                        if not linkstr_exists(vanity_link):  # Link key must not be in use
+                        if not link_key_exists(vanity_link):  # Link key must not be in use
                             archive_link(vanity_link, long_link)
                             valid_link_response = f'Added "https://slog.link/{vanity_link}" =>  "{long_link}".'
                             logging.info(valid_link_response)
@@ -263,11 +263,11 @@ def sloglink(url_code):
 @app.route('/long', methods=['POST'])
 def return_url_code():
     long_link = request.form.get("long_link")
-    linkstr = lookup_url(long_link)
-    if linkstr is None:
+    link_key = lookup_url(long_link)
+    if link_key is None:
         return 'None'
     else:
-        return linkstr
+        return link_key
 
 
 @app.route('/')

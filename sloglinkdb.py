@@ -11,13 +11,13 @@ class Sloglink(Base):
     __tablename__ = 'slog_links'
 
     id = Column(Integer, primary_key=True)
-    linkstr = Column(String, index=True, unique=True)
+    link_key = Column(String, index=True, unique=True)
     long_link = Column(String, index=True, unique=True)
     created = Column(DateTime, default=datetime.utcnow)
     last_used = Column(DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return "<Sloglink(linkstr=%s, long_link=%s)>" % (self.linkstr, self.long_link)
+        return "<Sloglink(link_key=%s, long_link=%s)>" % (self.link_key, self.long_link)
 
 
 def connect():
