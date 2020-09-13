@@ -3,3 +3,5 @@
 .venv
 sloglink.db
 dev_envs
+.vscode
+__pycache__
