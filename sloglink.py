@@ -254,15 +254,14 @@ def sloglink(url_code):
                 f'[{str(datetime.now())}]: Link key {url_code} was requested but has not been assigned to a link!')
         return redirect(redir_fail)
 
+# POST long_link='https://long.url.com' will return link key and link_key='key' will return the long link
+@app.route('/translate_link', methods=['POST'])
+def translate_link():
+    post_data = request.form.get('long_link')
+    if post_data is None:
+        post_data = request.form.get('link_key')
 
-@app.route('/long', methods=['POST'])
-def return_url_code():
-    long_link = request.form.get("long_link")
-    link_key = get_link_data(long_link)
-    if link_key is None:
-        return 'None'
-    else:
-        return link_key
+    return get_link_data(post_data)
 
 
 @app.route('/')
