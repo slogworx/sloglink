@@ -5,3 +5,4 @@ sloglink.db
 dev_envs
 .vscode
 __pycache__
+log/sloglink.log

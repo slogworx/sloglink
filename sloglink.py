@@ -5,8 +5,6 @@ from urllib.parse import urlparse
 from urllib.request import urlopen
 from datetime import datetime
 from random import choice
-from pathlib import Path
-from cred_crypto import load_text
 import logging
 import sloglinkdb as db
 import random
@@ -34,8 +32,8 @@ def valid_link(link):
 
     try:
         url_resp = urlopen(link)
-    except HTTPError as e:  # Can't go to link for some reason
-        if e.getcode() == 503:  # Link is valid but Cloudflare didn't like the header or link timed out
+    except HTTPError as e:
+        if e.getcode() == 503:  # URL valid, Cloudflare rejected header/timeout
             logging.info(f'[{str(datetime.now())}]: {link} is valid, but returned error 503.')
             return True
         elif e.getcode() == 403:
@@ -103,23 +101,17 @@ def delete_link(link_key):
         logging.warning(f'[{str(datetime.now())}]: Failed to delete link with link key {link_key}.')
 
 
-def lookup_link(url_code):
+def get_link_data(url_or_key):
     session = db.connect()
     try:
-        long_link = session.query(db.Sloglink).filter(db.Sloglink.link_key == url_code).one().long_link
+        if 'https://' in url_or_key:
+            return session.query(
+                db.Sloglink).filter(db.Sloglink.long_link == url_or_key).one().link_key
+        else:
+            return session.query(
+                db.Sloglink).filter(db.Sloglink.link_key == url_or_key).one().long_link
     except Exception:
-        long_link = None
-    
-    return long_link
-
-
-def lookup_url(long_url):
-    session = db.connect()
-    try:
-        link_key = session.query(db.Sloglink).filter(db.Sloglink.long_link == long_url).one().link_key
-    except Exception:
-        link_key = None
-    return link_key
+        return None
 
 
 def get_all_links():
@@ -131,8 +123,8 @@ def update_link_use(link_key):
     session = db.connect()
     try:
         updated_link = session.query(db.Sloglink).filter(db.Sloglink.link_key == link_key).one()
-    except Exception:  # TODO: test for the exact exception  
-         return False
+    except Exception:  # TODO: Test for the exact exception?
+        return False
     updated_link.last_used = datetime.utcnow()
     session.commit()
     logging.info(f'[{str(datetime.now())}]: Key {link_key} last_used updated.')
@@ -192,7 +184,7 @@ def add_link():
             long_link='Paste a long link above and click Submit.', all_links=all_links)
 
 
-# Make sure to comment this out before publishing until auth is created for it!
+# Make sure to comment this out in development until auth is added!
 # TODO: houskeeping auth
 '''
 @app.route('/housekeeping',methods=['POST', 'GET'])
@@ -245,7 +237,8 @@ def blm():
 @app.route('/<url_code>')
 def sloglink(url_code):
     redir_fail = '/add_link'
-    link = lookup_link(url_code)
+    link = get_link_data(url_code)
+
     if update_link_use(url_code):
         logging.info(f'[{str(datetime.now())}]: Redirected {url_code} to {link}.')
         return redirect(link)
@@ -254,7 +247,7 @@ def sloglink(url_code):
         # But first check for invalid characters to keep logs from getting cluttered by hackbots
         log_use = True
         for symbol in list(string.punctuation):
-            if symbol in list(url_code):
+            if symbol in url_code:
                 log_use = False
         if log_use:
             logging.warning(
@@ -265,7 +258,7 @@ def sloglink(url_code):
 @app.route('/long', methods=['POST'])
 def return_url_code():
     long_link = request.form.get("long_link")
-    link_key = lookup_url(long_link)
+    link_key = get_link_data(long_link)
     if link_key is None:
         return 'None'
     else:
