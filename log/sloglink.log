@@ -1,0 +1,803 @@
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 16:17:50] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:38:38] "[35m[1mGET /add_link HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:38:39] "[37mGET /add_link?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:38:39] "[37mGET /add_link?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:38:39] "[37mGET /add_link?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:38:39] "[37mGET /add_link?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:38:39] "[37mGET /add_link?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglinkdb.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:41:51] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:41:51] "[37mGET /static/sloglink.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:41:51] "[37mGET /static/slogworx_logo.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 22:41:51] "[37mGET /static/slogworx16.png HTTP/1.1[0m" 200 -
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139879947265792 and this is thread id 139880080656192.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f3854e047b0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139879947265792 and this is thread id 139880080656192.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139879947265792 and this is thread id 139880080656192.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:09:21] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:09:21] "[36mGET /static/slogworx_logo.png HTTP/1.1[0m" 304 -
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139643950388992 and this is thread id 139643978266432.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f016193d7b0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139643950388992 and this is thread id 139643978266432.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139643950388992 and this is thread id 139643978266432.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:25:25] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:25:44] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:25:45] "[37mGET /static/slogworx_logo.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:25:45] "[37mGET /static/sloglink.css HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140526623594240 and this is thread id 140526651471680.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7fcee500a7b0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140526623594240 and this is thread id 140526651471680.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140526623594240 and this is thread id 140526651471680.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+ERROR:werkzeug:127.0.0.1 - - [12/Sep/2020 23:33:52] code 400, message Bad request version ('O½\x00$\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:33:52] "[35m[1m  ü0@Ý[Hþ&â°È+ÞàA*}ÞÀ)Ã%Cn Ê§JHnñÓKvöwU5NÜGÉF$µuöâO½ $À+À/Ì©Ì¨À,À0À[0m" HTTPStatus.BAD_REQUEST -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:34:03] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:34:03] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140425813845760 and this is thread id 140425841723200.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7fb76c45f7b0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140425813845760 and this is thread id 140425841723200.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140425813845760 and this is thread id 140425841723200.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+ERROR:werkzeug:127.0.0.1 - - [12/Sep/2020 23:41:53] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03Wîâ¾¦Î\xadk\x96¸8rdã)¯½;£gÃÀ¡¼\x83#Pß\x8c¹0<')
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:41:53] "[35m[1m  üWîâ¾¦Î­k¸8rdã)¯½;£gÃÀ¡¼#Pß¹0< ±?å³`ËaQÃ'[0m" HTTPStatus.BAD_REQUEST -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:42:07] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:42:07] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-12 23:42:24.418273]: Valid link https://twitter.com/slogworx returned 200.
+INFO:root:[2020-09-12 23:42:24.433147]: https://twitter.com/slogworx successfully added using key of vv.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:42:24] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139623569716992 and this is thread id 139623597594432.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7efc9eca1e40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139623569716992 and this is thread id 139623597594432.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139623569716992 and this is thread id 139623597594432.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:46:21] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:46:21] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-12 23:46:36.171077]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:46:36] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140467550791424 and this is thread id 140467578668864.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7fc1241d6e40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140467550791424 and this is thread id 140467578668864.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140467550791424 and this is thread id 140467578668864.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:52:19] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:52:19] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-12 23:52:30.936869]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:52:30] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-12 23:53:01.848500]: Key vv last_used updated.
+INFO:root:[2020-09-12 23:53:01.848718]: Redirected vv to https://twitter.com/slogworx.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:53:01] "[32mGET /vv HTTP/1.1[0m" 302 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139649812252416 and this is thread id 139649840129856.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f02baf8be40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139649812252416 and this is thread id 139649840129856.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139649812252416 and this is thread id 139649840129856.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:57:59] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:57:59] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:57:59] "[37mGET /static/slogworx_logo.png HTTP/1.1[0m" 200 -
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/event/base.py", line 83, in __init__
+    self._empty_listeners = self._empty_listener_reg[instance_cls]
+  File "/usr/lib/python3.8/weakref.py", line 383, in __getitem__
+    return self.data[ref(key)]
+KeyError: <weakref at 0x7f378c060ea0; to 'type' at 0x7f3788208310 (InstrumentedAttribute)>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139876579538688 and this is thread id 139876461573888.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f37875b27b0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/event/base.py", line 83, in __init__
+    self._empty_listeners = self._empty_listener_reg[instance_cls]
+  File "/usr/lib/python3.8/weakref.py", line 383, in __getitem__
+    return self.data[ref(key)]
+KeyError: <weakref at 0x7f378c060ea0; to 'type' at 0x7f3788208310 (InstrumentedAttribute)>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139876579538688 and this is thread id 139876461573888.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139876579538688 and this is thread id 139876461573888.
+WARNING:root:[2020-09-12 23:58:14.011117]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [12/Sep/2020 23:58:14] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139876461573888 and this is thread id 139876607416128.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f37875b27b0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139876461573888 and this is thread id 139876607416128.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139876461573888 and this is thread id 139876607416128.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:00:43] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:00:57.464747]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:00:57] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139931664328448 and this is thread id 139931692205888.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f445aa99e40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139931664328448 and this is thread id 139931692205888.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139931664328448 and this is thread id 139931692205888.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:01:50] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:01:50] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-13 00:02:03.462355]: Valid link https://twitter.com/slogworx returned 200.
+INFO:root:[2020-09-13 00:02:03.480180]: https://twitter.com/slogworx successfully added using key of Rz.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:02:03] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-13 00:02:18.368411]: Key Rz last_used updated.
+INFO:root:[2020-09-13 00:02:18.368570]: Redirected Rz to https://twitter.com/slogworx.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:02:18] "[32mGET /Rz HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:02:47] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:02:47] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:02:58.516103]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:02:58] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f4a1a35b030>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f4a1a35b210>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956370937600 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f4a1b4ade40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956370937600 and this is thread id 139956398815040.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956370937600 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f4a1b4adb70>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139956252952320 and this is thread id 139956398815040.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:05:51] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:05:51] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:06:07.429163]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:06:07] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139860622702336 and this is thread id 139860650579776.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f33d4419e40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139860622702336 and this is thread id 139860650579776.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139860622702336 and this is thread id 139860650579776.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:10:27] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:10:27] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-13 00:10:41.457972]: Valid link https://twitter.com/slogworx returned 200.
+INFO:root:[2020-09-13 00:10:41.473675]: https://twitter.com/slogworx successfully added using key of 1S.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:10:41] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-13 00:10:51.896142]: Key 1S last_used updated.
+INFO:root:[2020-09-13 00:10:51.896296]: Redirected 1S to https://twitter.com/slogworx.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:10:51] "[32mGET /1S HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:11:10] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:11:10] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:11:20.855481]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:11:20] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f34f9885b70>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f34f8fc7120>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f34f8fc7030>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139865543063296 and this is thread id 139865570940736.
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/slog/Documents/Code/Python/sloglink/sloglink.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:02] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:02] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:19:15.834490]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:15] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:35] "[35m[1mGET /1S HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:35] "[37mGET /1S?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:35] "[37mGET /1S?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:35] "[37mGET /1S?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:36] "[37mGET /1S?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:57] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:19:57] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:21:07.232713]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:21:07] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:21:39] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:21:39] "[37mGET /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-13 00:21:49.588702]: Valid link https://twitter.com/slogworx returned 200.
+INFO:root:[2020-09-13 00:21:49.604343]: https://twitter.com/slogworx successfully added using key of FM.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:21:49] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+INFO:root:[2020-09-13 00:22:12.944384]: Key FM last_used updated.
+INFO:root:[2020-09-13 00:22:12.944542]: Redirected FM to https://twitter.com/slogworx.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:22:12] "[32mGET /FM HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:22:27] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:22:27] "[37mGET /add_link HTTP/1.1[0m" 200 -
+WARNING:root:[2020-09-13 00:22:38.384828]: https://twitter.com/slogworx was submitted but already exists in the database.
+INFO:werkzeug:127.0.0.1 - - [13/Sep/2020 00:22:38] "[37mPOST /add_link HTTP/1.1[0m" 200 -
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f1b36da1300>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754993817344 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f1b3c48be40>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754993817344 and this is thread id 139755021694784.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754993817344 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f1b36da1030>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f1b36da13f0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception during reset or similar
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+ERROR:sqlalchemy.pool.impl.NullPool:Exception closing connection <sqlite3.Connection object at 0x7f1b36da14e0>
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 697, in _finalize_fairy
+    fairy._reset(pool)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 893, in _reset
+    pool._dialect.do_rollback(self)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 540, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 270, in _close_connection
+    self._dialect.do_close(connection)
+  File "/home/slog/Documents/Code/Python/sloglink/.venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 546, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 139754874234624 and this is thread id 139755021694784.

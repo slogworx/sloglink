@@ -1,0 +1,5 @@
+.dev.creds
+.dev.key
+.venv
+sloglink.db
+dev_envs

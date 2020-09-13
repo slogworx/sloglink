@@ -21,13 +21,16 @@ class Sloglink(Base):
 
 
 def connect():
-    # Retrieve and decrypt the PostgreSQL connection url
-    # These need to be changed to what what was created with cred_crypto.py via command line
-    text = load_text('.your.encrypted.connection_string')
-    key = load_text('.your.encryption.key')
+    # These need to be changed to what was created with cred_crypto.py
+    text = load_text('.dev.creds')
+    key = load_text('.dev.key')
     url = cred_crypto(text, key, 'decrypt').decode(encoding='utf-8')
 
-    engine = create_engine(url, client_encoding='utf-8', echo=False)
+    engine = create_engine(url, echo=False)  # May need to add "client_encoding='utf-8'" as an argument. 
     Session = sessionmaker(bind=engine)
 
     return Session()
+
+
+if __name__ == "__main__":
+    pass

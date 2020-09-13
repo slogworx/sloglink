@@ -1,10 +1,24 @@
 # slog.link
 Link shortener service using NGINX + WSGI + Flask + SQLAlchemy.
 
-Setup and configure your server to use NGINX, WSGI, Flask, SQLAlchemy, your favorite database, and your Python 3 virtual environment (It's not as daunting as it seems, and you can use duckduckgo.com to search for documentation if you're not sure how to do one or all of those things).
+## Quick Setup
 
-Run cred_crypto.py from the command line once the sloglink code has been extracted. The script will help you create a new key and use that key to encrypt your login string. It stores them in the files you name. Once they're created, you have to manually edit sloglinkdb.py to use these filenames in order for authentication to work with your database.
+shell:~$ python3 -m venv sloglink_venv
+shell:~$ source sloglink_venv/bin/activate
+shell:~$ pip install -r requirements.txt
 
-Some may be annoyed by having to create a key and encrypt credentials. Those people are free to re-write the code to avoid it. It would be easy to do, but I don't recommend it. Yes, the key is stored right beside the login string. The extra layer of encryption isn't just to make it more difficult to get at the credentials, it's to create a setup where developers helping you would need access and willfully have to decrypt the connection string to access the database. 
+NOTE: sloglink utilizes SQLAlchemy, and may require that you install an adapter for your flavor of database.
 
-Once you complete all the things above, setup sloglink as a service on your virtual host (use duckduckgo.com to search on how to do this if you're not sure).
+Run cred_crypto.py from the command line.
+
+shell:~$ python3 cred_crypto.py
+
+ The script will ask you for the filename in which you would like to store your key, as well as the file to store your credentials. Once they're created, you have to manually edit sloglinkdb.py and setup_db.py to reference the files you created.
+
+Some may be annoyed by having to create a key and encrypt/decrypt credentials, those people are free to rewrite the code to avoid it. I personally believe it it makes the credentials more difficult to obtain for an intruder unfamiliar with the code, but more importantly it protects against accidental viewing from anyone that may have access to the directory.
+
+Next you will need to create the sloglink tables using the SQLAlchemy engine.
+
+shell:~$ python3 setup_db.py
+
+If you receive the message that the database tables have been created, then you are all set. You just need to make sure nginx and wsgi are installed and configured for the site. You will probably want to configure the app as a service, which should run it via your virtual environment (e.g. /home/user/sloglink_venv/bin/uwsgi --ini /home/user/sloglink/sloglink.ini)

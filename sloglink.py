@@ -12,13 +12,14 @@ import sloglinkdb as db
 import random
 import string
 
+HOSTNAME = '127.0.0.1:5000'  # Change this to your host
 RESTRICTED_KEYS = (  # Reserved or Nope
     'kkk',  # Nope
     'KKK',  # Nope
     'blm',  # Reserved
     'BLM',  # Reserved
-    'housekeeping',  #Reserved
-    'long',  #Reserved
+    'housekeeping',  # Reserved
+    'long',  # Reserved
 )
 logging.basicConfig(filename='log/sloglink.log', level=logging.INFO)
 app = Flask(__name__)
@@ -28,9 +29,9 @@ def valid_link(link):
     url = urlparse(link)
     if url.scheme == '':
         return False  # No http or https was used, or something is weird
-    elif url.hostname == 'slog.link':
-        return False  # Don't make slog.link links to slog.link
-    
+    elif url.hostname == HOSTNAME:
+        return False  # Don't make short links to short links
+
     try:
         url_resp = urlopen(link)
     except HTTPError as e:  # Can't go to link for some reason
@@ -46,7 +47,7 @@ def valid_link(link):
     except Exception:
         logging.warning(f'[{str(datetime.now())}]: {link} is an invalid url, unknown exception.')
         return False  # No idea what happened
-    
+
     logging.info(f'[{str(datetime.now())}]: Valid link {link} returned {url_resp.getcode()}.')
     return True  # Link OK!
 
@@ -63,16 +64,16 @@ def link_key_exists(link_key):
 
 def long_link_exists(long_link):
     session = db.connect()
-    link_key = ''
-    
+    link_key = HOSTNAME
+
     try:
         link_key = session.query(db.Sloglink).filter(
             db.Sloglink.long_link == long_link).one().link_key
     except Exception:
         return False
-    
+
     logging.warning(f'[{str(datetime.now())}]: {long_link} was submitted but already exists in the database.')
-    return f'https://slog.link/{link_key}'
+    return f'{HOSTNAME}/{link_key}'
 
 
 def get_link_key(n):
@@ -149,10 +150,11 @@ def add_link():
                 'add_link.html', short_link=short_link,
                 long_link=long_link, all_links=all_links)
         if not valid_link(long_link):
-            short_link = 'https://slog.link'
+            short_link = HOSTNAME
             long_link = f"""
-                Unable to add link ({long_link}). Please confirm it is valid, it 
-                begins with 'https://', and that it DOES NOT require authentication to view."""
+                Unable to add link ({long_link}). Please confirm it is valid,
+                it begins with 'https://', and that it DOES NOT require
+                authentication to view."""
             return render_template(
                 'add_link.html', short_link=short_link,
                 long_link=long_link, all_links=all_links)
@@ -168,25 +170,25 @@ def add_link():
                 attempts = 0
             link_key = get_link_key(link_size)
             if link_key in RESTRICTED_KEYS:  # Keeps RESTRICTED_KEYS from being generated
-                continue    
+                continue
             old_link_key = link_key_exists(link_key)
             attempts += 1
-        short_link = f'https://slog.link/{link_key}'
+        short_link = f'{HOSTNAME}/{link_key}'
         try:
             archive_link(link_key, long_link)
         except IntegrityError:  # This shouldn't ever happen, but...
-            short_link = 'https://slog.link'
+            short_link = HOSTNAME
             long_link = 'duplicate link element cannot be archived.'
             logging.warning(
                 f'[{str(datetime.now())}]: Duplicate link key {link_key} was generated but not detected!')
-        
+
         return render_template(
             'add_link.html', short_link=short_link,
             long_link=long_link, all_links=all_links)
     else:
         return render_template(
             'add_link.html',
-            short_link='https://slog.link',
+            short_link=HOSTNAME,
             long_link='Paste a long link above and click Submit.', all_links=all_links)
 
 
@@ -210,12 +212,12 @@ def slogadmin():
                     if not short_link:
                         if not link_key_exists(vanity_link):  # Link key must not be in use
                             archive_link(vanity_link, long_link)
-                            valid_link_response = f'Added "https://slog.link/{vanity_link}" =>  "{long_link}".'
+                            valid_link_response = f'Added "{vanity_link}" =>  "{long_link}".'
                             logging.info(valid_link_response)
                         else:
                             valid_link_response = f'{vanity_link} is already in use.'
                     else:
-                        valid_link_response = f'"{long_link}" is already linked via "https://slog.link/{short_link}".'
+                        valid_link_response = f'"{long_link}" is already linked via "{short_link}".'
                 else:
                     valid_link_response = f'"{long_link}" is not a valid URL.'
         except TypeError:
@@ -242,7 +244,7 @@ def blm():
 
 @app.route('/<url_code>')
 def sloglink(url_code):
-    redir_fail = 'https://slog.link'
+    redir_fail = '/add_link'
     link = lookup_link(url_code)
     if update_link_use(url_code):
         logging.info(f'[{str(datetime.now())}]: Redirected {url_code} to {link}.')
@@ -272,7 +274,7 @@ def return_url_code():
 
 @app.route('/')
 def go_add():
-    return redirect('https://slog.link/add_link')
+    return redirect('/add_link')
 
 
 if __name__ == "__main__":
