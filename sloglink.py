@@ -104,7 +104,7 @@ def delete_link(link_key):
 def get_link_data(url_or_key):
     session = db.connect()
     try:
-        if 'https://' in url_or_key:
+        if ('http://' in url_or_key) or ('https://' in url_or_key):
             return session.query(
                 db.Sloglink).filter(db.Sloglink.long_link == url_or_key).one().link_key
         else:
@@ -145,7 +145,7 @@ def add_link():
             short_link = HOSTNAME
             long_link = f"""
                 Unable to add link ({long_link}). Please confirm it is valid,
-                it begins with 'https://', and that it DOES NOT require
+                it begins with 'https://' or 'http://', and that it DOES NOT require
                 authentication to view."""
             return render_template(
                 'add_link.html', short_link=short_link,
@@ -254,6 +254,7 @@ def sloglink(url_code):
                 f'[{str(datetime.now())}]: Link key {url_code} was requested but has not been assigned to a link!')
         return redirect(redir_fail)
 
+
 # POST long_link='https://long.url.com' will return link key and link_key='key' will return the long link
 @app.route('/translate_link', methods=['POST'])
 def translate_link():
@@ -261,7 +262,7 @@ def translate_link():
     if post_data is None:
         post_data = request.form.get('link_key')
 
-    return get_link_data(post_data)
+    return get_link_data(post_data)  # status_code=500 key or long link don't exist
 
 
 @app.route('/')
