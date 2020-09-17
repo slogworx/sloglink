@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, make_response
 from sqlalchemy.exc import IntegrityError
 from urllib.error import HTTPError
 from urllib.parse import urlparse
@@ -111,7 +111,7 @@ def get_link_data(url_or_key):
             return session.query(
                 db.Sloglink).filter(db.Sloglink.link_key == url_or_key).one().long_link
     except Exception:
-        return None
+        return make_response('', 204)  # No Content
 
 
 def get_all_links():
@@ -262,7 +262,7 @@ def translate_link():
     if post_data is None:
         post_data = request.form.get('link_key')
 
-    return get_link_data(post_data)  # status_code=500 key or long link don't exist
+    return get_link_data(post_data)
 
 
 @app.route('/')
